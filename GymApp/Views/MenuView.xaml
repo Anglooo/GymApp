@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentPage 
+        xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+        xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss"
+        x:Class="GymApp.Views.MenuView">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <StackLayout
+                Grid.Row="1"
+                Orientation="Vertical"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <Button Text="MENU PAGE" TextColor="White" Command="{Binding NewWorkoutOpenCommand}" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="MENU PAGE" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="MENU PAGE" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+                <Label Text="MENU PAGE" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</views:MvxContentPage>
