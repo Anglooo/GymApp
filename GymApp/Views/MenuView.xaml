@@ -16,10 +16,9 @@
                 Orientation="Vertical"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand">
-                <Button Text="MENU PAGE" TextColor="White" Command="{Binding NewWorkoutOpenCommand}" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="MENU PAGE" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="MENU PAGE" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
-                <Label Text="MENU PAGE" TextColor="White" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Dashboard" TextColor="White" Command="{Binding DashboardOpenCommand}" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="New Workout" TextColor="White" Command="{Binding NewWorkoutOpenCommand}" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Excersize History" TextColor="White" Command="{Binding ExcersizeHistoryOpenCommand}" HorizontalOptions="CenterAndExpand"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

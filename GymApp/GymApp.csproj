@@ -15,7 +15,7 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
     <Folder Include="Repositories\" />
-    <Folder Include="BaseClasses\" />
+    <Folder Include="Model\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="MainPage.xaml.cs" />

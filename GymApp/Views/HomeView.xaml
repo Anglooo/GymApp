@@ -6,8 +6,10 @@
     x:Class="GymApp.Views.HomeView">
   
     <Grid>
-      <StackLayout>
-        <Entry Text="Hellooo"></Entry>
+      <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            
+            <Button Text="New Workout" VerticalOptions="End"/>
+            <Button Text="New Excersize" VerticalOptions="End"/>
       </StackLayout>
     </Grid>
 </views:MvxContentPage>

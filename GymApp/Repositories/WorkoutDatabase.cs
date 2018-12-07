@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using GymApp.BaseClasses;
+using GymApp.Model;
 using SQLite;
 
 namespace GymApp.Repositories

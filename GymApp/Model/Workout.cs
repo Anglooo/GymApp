@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GymApp.BaseClasses
+namespace GymApp.Model
 {
     public class Workout
     {

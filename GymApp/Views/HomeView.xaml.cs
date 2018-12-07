@@ -3,7 +3,7 @@ using MvvmCross.Forms.Views;
 
 namespace GymApp.Views
 {
-    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail, WrapInNavigationPage = true)]
+    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail, WrapInNavigationPage = true, NoHistory = true)]
     public partial class HomeView : MvxContentPage
     {
         public HomeView()

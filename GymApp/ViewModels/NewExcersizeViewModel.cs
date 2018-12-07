@@ -3,12 +3,12 @@ using MvvmCross.ViewModels;
 
 namespace GymApp.ViewModels
 {
-    public class HomeViewModel : MvxViewModel
+    public class NewExcersizeViewModel : MvxViewModel
     {
         private readonly IMvxNavigationService _navigationService;
 
 
-        public HomeViewModel(IMvxNavigationService navigationService)
+        public NewExcersizeViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
         }

@@ -56,5 +56,20 @@ namespace GymApp
                 return workoutDatabase;
             }
         }
+
+        static ExcersizeDatabase excersizeDatabase;
+
+        public static ExcersizeDatabase ExcersizeDatabase
+        {
+            get
+            {
+                if (excersizeDatabase == null)
+                {
+                    excersizeDatabase = new ExcersizeDatabase(
+                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExcersizeSQLite.db3"));
+                }
+                return excersizeDatabase;
+            }
+        }
     }
 }
