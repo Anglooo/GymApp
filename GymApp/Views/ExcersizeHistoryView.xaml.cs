@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace GymApp.Views
 {
-    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail, WrapInNavigationPage = true)]
+    [MvxMasterDetailPagePresentation(MasterDetailPosition.Detail, WrapInNavigationPage = true, NoHistory =true)]
     public partial class ExcersizeHistoryView : MvxContentPage
     {
 
@@ -21,7 +21,18 @@ namespace GymApp.Views
         {
             base.OnAppearing();
             viewModel = this.ViewModel as ExcersizeHistoryViewModel;
-            ToolbarItem newExcersizeToolbarItem = new ToolbarItem("New Excersize", null,() => { viewModel.NewExcersizeCommand.Execute(); });
+            ToolbarItem newExcersizeToolbarItem = new ToolbarItem("New Excersize", "plus.png",() => { viewModel.NewExcersizeCommand.Execute(); });
+            ToolbarItems.Clear();
+            ToolbarItems.Add(newExcersizeToolbarItem);
+
+            if (Xamarin.Forms.Application.Current.MainPage is MasterDetailPage masterDetailPage)
+            {
+                masterDetailPage.IsPresented = false;
+            }
+            else if (Xamarin.Forms.Application.Current.MainPage is NavigationPage navigationPage && navigationPage.CurrentPage is MasterDetailPage nestedMasterDetail)
+            {
+                nestedMasterDetail.IsPresented = false;
+            }
         }
     }
 }
