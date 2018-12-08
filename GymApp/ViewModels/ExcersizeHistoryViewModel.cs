@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GymApp.Model;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -31,8 +30,7 @@ namespace GymApp.ViewModels
                 _excersizes = value;
                 RaisePropertyChanged("Excersizes");
             }
-       }
-
+        }
 
         public override void Prepare()
         {
@@ -42,16 +40,13 @@ namespace GymApp.ViewModels
         public async override void Start()
         {
             base.Start();
+        }
 
-            try
-            {
-                List<Excersize> excersizesList = await App.ExcersizeDatabase.GetItemsAsync();
-                Excersizes = new MvxObservableCollection<Excersize>(excersizesList);
-            }
-            catch(Exception e)
-            {
-                int i = 0;
-            }
+        public async override void ViewAppearing()
+        {
+            base.ViewAppearing();
+            List<Excersize> excersizesList = await App.ExcersizeDatabase.GetItemsAsync();
+            Excersizes = new MvxObservableCollection<Excersize>(excersizesList);
         }
     }
 }
