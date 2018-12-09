@@ -43,7 +43,6 @@ namespace GymApp
         }
 
         static WorkoutDatabase workoutDatabase;
-
         public static WorkoutDatabase WorkoutDatabase
         {
             get
@@ -58,7 +57,6 @@ namespace GymApp
         }
 
         static ExcersizeDatabase excersizeDatabase;
-
         public static ExcersizeDatabase ExcersizeDatabase
         {
             get
@@ -69,6 +67,20 @@ namespace GymApp
                       Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "ExcersizeSQLite.db3"));
                 }
                 return excersizeDatabase;
+            }
+        }
+
+        static WorkoutTemplateDatabase workoutTemplateDatabase;
+        public static WorkoutTemplateDatabase WorkoutTemplateDatabase
+        {
+            get
+            {
+                if (workoutTemplateDatabase == null)
+                {
+                    workoutTemplateDatabase = new WorkoutTemplateDatabase(
+                      Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "WorkoutTemplates.db3"));
+                }
+                return workoutTemplateDatabase;
             }
         }
     }

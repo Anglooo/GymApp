@@ -9,7 +9,8 @@
             <Entry Text="{Binding Name}" Placeholder="Name"/>
             <Entry Text="{Binding Description}" Placeholder="Description"/>
             <Entry Text="{Binding Machine}" Placeholder="Machine"/>
-            <Label Text="RepRange"/>
+            <Entry Text="{Binding Sets}" Placeholder="Sets" Keyboard="Numeric"/>
+            <Label Text="Rep Range"/>
             <StackLayout Orientation="Horizontal">
                 <Picker Title="Low" SelectedItem="{Binding RepRangeLow}" ItemsSource="{Binding RepNumbers}"/>
                 <Picker Title="High" SelectedItem="{Binding RepRangeHigh}" ItemsSource="{Binding RepNumbers}"/>

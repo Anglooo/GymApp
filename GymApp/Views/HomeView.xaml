@@ -8,8 +8,6 @@
     <Grid>
       <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             
-            <Button Text="New Workout" VerticalOptions="End"/>
-            <Button Text="New Excersize" VerticalOptions="End"/>
       </StackLayout>
     </Grid>
 </views:MvxContentPage>

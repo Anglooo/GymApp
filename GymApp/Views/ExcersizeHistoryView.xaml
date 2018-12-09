@@ -9,9 +9,11 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid>
+                        <StackLayout Orientation="Vertical">
                             <Label Text="{Binding Name}" FontAttributes="Bold" />
-                        </Grid>
+                            <Label Text="{Binding Machine}" FontAttributes="None" />
+                            <Label Text="{Binding RepRange}" FontAttributes="None" />
+                        </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

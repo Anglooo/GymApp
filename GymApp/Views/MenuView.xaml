@@ -19,6 +19,8 @@
                 <Button Text="Dashboard" TextColor="White" Command="{Binding DashboardOpenCommand}" HorizontalOptions="CenterAndExpand"/>
                 <Button Text="New Workout" TextColor="White" Command="{Binding NewWorkoutOpenCommand}" HorizontalOptions="CenterAndExpand"/>
                 <Button Text="Excersize History" TextColor="White" Command="{Binding ExcersizeHistoryOpenCommand}" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Templates" TextColor="White" Command="{Binding TemplateWorkoutOpenCommand}" HorizontalOptions="CenterAndExpand"/>
+
             </StackLayout>
         </Grid>
     </ContentPage.Content>

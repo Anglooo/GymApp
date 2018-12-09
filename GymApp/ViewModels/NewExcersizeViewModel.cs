@@ -24,10 +24,25 @@ namespace GymApp.ViewModels
 
             SaveExcersizeCommand = new MvxCommand(async () => 
             {
-                if(string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Machine) && string.IsNullOrWhiteSpace(RepRangeLow) && string.IsNullOrWhiteSpace(RepRangeHigh))
+                if(string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Machine) && string.IsNullOrWhiteSpace(RepRangeLow) && string.IsNullOrWhiteSpace(RepRangeHigh) && string.IsNullOrWhiteSpace(Sets))
                 {
                     await Application.Current.MainPage.DisplayAlert("Insufficient Data", "Insufficient Data", "OK");
                     return;
+                }
+
+                int repLowInt;
+                bool parsedLow = int.TryParse(RepRangeLow, out repLowInt);
+
+                int repHighInt;
+                bool parsedHigh = int.TryParse(RepRangeHigh, out repHighInt);
+
+                if(parsedHigh && parsedLow)
+                {
+                    if(repLowInt > repHighInt)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Rep Range Problem", "Low rep range is higher than high rep range.", "OK");
+                        return;
+                    }
                 }
 
                 Excersize excersize = new Excersize();
@@ -35,7 +50,8 @@ namespace GymApp.ViewModels
                 excersize.Name = Name;
                 excersize.Description = Description;
                 excersize.Machine = Machine;
-                excersize.RepRange = RepRangeLow + " - " + RepRangeHigh;
+                excersize.RepRange = RepRangeLow + "-" + RepRangeHigh;
+                excersize.Sets = Sets;
 
                 await App.ExcersizeDatabase.SaveItemAsync(excersize);
                 await _navigationService.Close(this);
@@ -109,6 +125,20 @@ namespace GymApp.ViewModels
             {
                 _repRangeHigh = value;
                 RaisePropertyChanged("RepRangeHigh");
+            }
+        }
+
+        private string _sets { get; set; }
+        public string Sets
+        {
+            get
+            {
+                return _sets;
+            }
+            set
+            {
+                _sets = value;
+                RaisePropertyChanged("Sets");
             }
         }
 

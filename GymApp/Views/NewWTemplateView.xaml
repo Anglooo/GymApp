@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GymApp.Views.NewWTemplateView">
+  
+    <Grid>
+      <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Entry Text="{Binding TemplateName}" Placeholder="Template Name"/>
+            <Entry Text="{Binding TemplateDescription}" Placeholder="Template Description"/>
+            <StackLayout Orientation="Horizontal">
+               <Label Text="Linked Excersizes"/>
+               <Button Command="{Binding LinkExcersizeCommand}" Text="Link Excersize"/>
+            </StackLayout>
+            <ListView ItemsSource="{Binding LinkedExcersizes}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" />
+                                <Label Text="{Binding Description}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Command="{Binding SaveCommand}" Text="Save"/>
+      </StackLayout>
+    </Grid>
+</views:MvxContentPage>
