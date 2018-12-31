@@ -18,20 +18,33 @@ namespace GymApp
         {
             //TODO: Write View
             _navigationService = navigationService;
-            SaveCommand = new MvxCommand(() => 
+            SaveCommand = new MvxCommand(async () => 
             {
                 foreach (var item in Excersizes)
                 {
                     List<string> links = new List<string>();
 
-                    if(item.IsSelected)
+                    if(item.Excersize.TemplateID != null)
+                    {
+                        links = item.Excersize.TemplateID;
+                    }
+
+                    if (item.IsSelected)
                     {
                         links.Add(ThisTemplate.ID);
                     }
+                    else
+                    {
+                        if(links.Contains(ThisTemplate.ID))
+                        {
+                            links.Remove(ThisTemplate.ID);
+                        }
+                    }
                     item.Excersize.TemplateID = links;
-                    App.ExcersizeDatabase.SaveItemAsync(item.Excersize);
+
+                    var x = await App.ExcersizeDatabase.SaveItemAsync(item.Excersize);
                 }
-                _navigationService.Close(this);
+                await _navigationService.Close(this);
             });
         }
 

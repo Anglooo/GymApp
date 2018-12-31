@@ -20,6 +20,7 @@
                 <Button Text="New Workout" TextColor="White" Command="{Binding NewWorkoutOpenCommand}" HorizontalOptions="CenterAndExpand"/>
                 <Button Text="Excersize History" TextColor="White" Command="{Binding ExcersizeHistoryOpenCommand}" HorizontalOptions="CenterAndExpand"/>
                 <Button Text="Templates" TextColor="White" Command="{Binding TemplateWorkoutOpenCommand}" HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Workout History" TextColor="White" Command="{Binding WorkoutHistoryOpenCommand}" HorizontalOptions="CenterAndExpand"/>
 
             </StackLayout>
         </Grid>

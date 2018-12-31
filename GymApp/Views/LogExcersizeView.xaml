@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="GymApp.Views.LogExcersizeView"
+    Title="Logging Excersize">    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Label Text="{Binding CurrentLoggedExcersize.ExcersizeName, StringFormat='Excersize: {0}'}" FontAttributes="Bold" FontSize="Large"/>
+            <Label Text="{Binding CurrentLoggedExcersize.Machine, StringFormat='Machine: {0}'}" FontSize="Large"/>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Sets" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Button Text="Add Set" Command="{Binding AddSetCommand}"/>
+            </StackLayout>
+            <Label Text="{Binding CurrentTemplate.RepRange, StringFormat='Suggested Rep Range: {0}'}"/>
+            <ListView x:Name="ExcersizeListView" ItemsSource="{Binding LoggingSets}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="Reps" VerticalOptions="Center"/>
+                                <Entry Keyboard="Numeric" Placeholder="Reps" Text="{Binding Reps}" />
+                                <Label Text="Weight" VerticalOptions="Center"/>
+                                <Entry Keyboard="Numeric" Placeholder="Weight" Text="{Binding Weight}" FontAttributes="None" />
+                                <Picker SelectedItem="{Binding Denom}" Title="Denom">
+                                  <Picker.Items>
+                                    <x:String>KG</x:String>
+                                    <x:String>lbs</x:String>
+                                  </Picker.Items>
+                                </Picker>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Save" Command="{Binding SaveCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</views:MvxContentPage>

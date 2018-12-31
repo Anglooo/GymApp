@@ -13,6 +13,8 @@ namespace GymApp.ViewModels
         public MvxCommand ExcersizeHistoryOpenCommand { get; private set; }
         public MvxCommand DashboardOpenCommand { get; private set; }
         public MvxCommand TemplateWorkoutOpenCommand { get; private set; }
+        public MvxCommand WorkoutHistoryOpenCommand { get; private set; }
+
 
         public MenuViewModel(IMvxNavigationService navigationService)
         {
@@ -21,6 +23,7 @@ namespace GymApp.ViewModels
             ExcersizeHistoryOpenCommand = new MvxCommand(() => { _navigationService.Navigate<ExcersizeHistoryViewModel>(); });
             DashboardOpenCommand = new MvxCommand(() => { _navigationService.Navigate<HomeViewModel>(); });
             TemplateWorkoutOpenCommand = new MvxCommand(() => { _navigationService.Navigate<TemplateViewModel>(); });
+            WorkoutHistoryOpenCommand = new MvxCommand(() => { _navigationService.Navigate<WorkoutHistoryViewModel>(); });
         }
     }
 }

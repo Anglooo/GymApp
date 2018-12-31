@@ -4,7 +4,33 @@
     xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
     x:Class="GymApp.Views.NewWorkoutView"
-    BackgroundColor="Maroon">
+    Title="Workout">
     <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <Picker ItemsSource="{Binding Templates}" ItemDisplayBinding="{Binding Name}" SelectedItem="{Binding SelectedTemplate}" Title="Template"/>
+            <DatePicker Date="{Binding CurrentWorkout.StartedTime}"/>
+            <Label Text="Click Excersize To Log"/>
+            <ListView x:Name="ExcersizeListView" ItemsSource="{Binding Excersizes}" SelectedItem="{Binding SelectedExcersize}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding ExcersizeTemplate.Name}" FontAttributes="Bold" />
+                                    <Label Text="{Binding ExcersizeTemplate.Machine}" FontAttributes="None" />
+                                    <Label Text="{Binding ExcersizeTemplate.RepRange}" FontAttributes="None" />
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding LoggedExcersizeTemp.SetOverview}"/>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            
+            <Button VerticalOptions="EndAndExpand" Command="{Binding SaveCommand}" Text="Save"/>
+        </StackLayout>
     </ContentPage.Content>
 </views:MvxContentPage>

@@ -7,11 +7,12 @@ using Xamarin.Forms;
 
 namespace GymApp.ViewModels
 {
-    public class NewExcersizeViewModel : MvxViewModel
+    public class NewExcersizeViewModel : MvxViewModel<bool,Excersize>
     {
         private readonly IMvxNavigationService _navigationService;
         public MvxCommand SaveExcersizeCommand { get; private set; }
 
+        private bool ReturnData { get; set; }
 
         public NewExcersizeViewModel(IMvxNavigationService navigationService)
         {
@@ -54,7 +55,16 @@ namespace GymApp.ViewModels
                 excersize.Sets = Sets;
 
                 await App.ExcersizeDatabase.SaveItemAsync(excersize);
-                await _navigationService.Close(this);
+
+                if(ReturnData)
+                {
+                    await _navigationService.Close(this, excersize);
+                }
+                else
+                {
+                    await _navigationService.Close(this);
+                }
+
             });
         }
 
@@ -143,5 +153,10 @@ namespace GymApp.ViewModels
         }
 
         public MvxObservableCollection<string> RepNumbers { get; private set; }
+
+        public override void Prepare(bool parameter)
+        {
+            ReturnData = parameter;
+        }
     }
 }
