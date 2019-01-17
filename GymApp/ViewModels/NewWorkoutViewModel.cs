@@ -14,6 +14,9 @@ namespace GymApp.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
 
+        private bool EdittingWorkout;
+        private bool ShownTemplateAlert;
+
         public MvxCommand SaveCommand { get; private set; }
         public MvxCommand NewExcersizeCommand { get; private set; }
 
@@ -131,6 +134,7 @@ namespace GymApp.ViewModels
                     }
                 }
             }
+
             if(Excersizes == null|| Excersizes.Count() == 0)
             {
                 Excersizes = new MvxObservableCollection<ExcersizeLogWrapper>(templatedExcersizes);
@@ -240,6 +244,8 @@ namespace GymApp.ViewModels
         {
             if(parameter != null)
             {
+                ShownTemplateAlert = true;
+                EdittingWorkout = true;
                 Excersizes = new MvxObservableCollection<ExcersizeLogWrapper>(parameter.LoggedExcersizes);
                 CurrentWorkout = parameter;
             }
