@@ -8,7 +8,10 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Label Text="{Binding CurrentLoggedExcersize.ExcersizeName, StringFormat='Excersize: {0}'}" FontAttributes="Bold" FontSize="Large"/>
-            <Label Text="{Binding CurrentLoggedExcersize.Machine, StringFormat='Machine: {0}'}" FontSize="Large"/>
+            <StackLayout Orientation="Vertical">
+                <Label Text="{Binding CurrentTemplate.Machine, StringFormat='Machine: {0}'}" FontSize="Large"/>
+                <Label Text="{Binding CurrentTemplate.LastWorkoutOverview}" FontSize="Medium"/>
+            </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label Text="Sets" FontSize="Medium" FontAttributes="Bold" VerticalOptions="Center"/>
                 <Button Text="Add Set" Command="{Binding AddSetCommand}"/>

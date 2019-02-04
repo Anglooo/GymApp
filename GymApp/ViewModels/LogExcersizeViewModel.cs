@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GymApp.Model;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
+using Xamarin.Forms;
 
 namespace GymApp.ViewModels
 {
@@ -59,6 +61,7 @@ namespace GymApp.ViewModels
             {
                 CurrentLoggedExcersize.Sets = parameter.LoggedExcersizeTemp.Sets;
                 LoggingSets = new MvxObservableCollection<LoggingSet>(parameter.LoggedExcersizeTemp.Sets);
+                CurrentTemplate = parameter.ExcersizeTemplate;
             }
             else
             {
@@ -99,11 +102,29 @@ namespace GymApp.ViewModels
 
         private async Task SaveLog()
         {
+            bool complete = true;
+            foreach (var item in LoggingSets)
+            {
+                if(item.Weight == 0 || item.Reps == 0 || item.Denom == null)
+                {
+                    complete = false;
+                    break;
+                }
+            }
+
+            if(!complete)
+            {
+                await Application.Current.MainPage.DisplayAlert("Please complete all sets", "", "Ok");
+                return;
+            }
 
             CurrentLoggedExcersize.Sets = LoggingSets.ToList();
 
             excersizeLogWrapper.LoggedExcersizeTemp = CurrentLoggedExcersize;
             excersizeLogWrapper.LogComplete = true;
+
+            CurrentTemplate.LastWorkoutOverview = CurrentLoggedExcersize.SetOverview + " On " + DateTime.Now.ToShortDateString();
+            await App.ExcersizeDatabase.SaveItemAsync(CurrentTemplate);
 
             await _navigationService.Close<ExcersizeLogWrapper>(this, excersizeLogWrapper);
         }

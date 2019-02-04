@@ -56,6 +56,51 @@ namespace GymApp.ViewModels
                 bpress.TemplateID = pushtemplate;
                 await App.ExcersizeDatabase.SaveItemAsync(bpress);
 
+                Excersize bpress2 = new Excersize();
+                bpress2.ID = Guid.NewGuid().ToString();
+                bpress2.Name = "DB Bench Press";
+                bpress2.Machine = "Bench";
+                bpress2.Sets = "3";
+                bpress2.RepRange = "8-12";
+                bpress2.TemplateID = pushtemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(bpress2);
+
+                Excersize tcpush = new Excersize();
+                tcpush.ID = Guid.NewGuid().ToString();
+                tcpush.Name = "V Bar Push Down";
+                tcpush.Machine = "Cable Machine";
+                tcpush.Sets = "3";
+                tcpush.RepRange = "8-12";
+                tcpush.TemplateID = pushtemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(tcpush);
+
+                Excersize latRaise = new Excersize();
+                latRaise.ID = Guid.NewGuid().ToString();
+                latRaise.Name = "Lat Raise";
+                latRaise.Machine = "Dumb Bells";
+                latRaise.Sets = "3";
+                latRaise.RepRange = "8-12";
+                latRaise.TemplateID = pushtemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(latRaise);
+
+                Excersize chestFly = new Excersize();
+                chestFly.ID = Guid.NewGuid().ToString();
+                chestFly.Name = "Chest Fly";
+                chestFly.Machine = "Fly Machine";
+                chestFly.Sets = "3";
+                chestFly.RepRange = "8-12";
+                chestFly.TemplateID = pushtemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(chestFly);
+
+                Excersize shoulderpress2 = new Excersize();
+                shoulderpress2.ID = Guid.NewGuid().ToString();
+                shoulderpress2.Name = "DB Shoulder press";
+                shoulderpress2.Machine = "Bench";
+                shoulderpress2.Sets = "3";
+                shoulderpress2.RepRange = "8-12";
+                shoulderpress2.TemplateID = pushtemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(shoulderpress2);
+
                 Excersize shoulderpress = new Excersize();
                 shoulderpress.ID = Guid.NewGuid().ToString();
                 shoulderpress.Name = "Shoulder press";
@@ -64,6 +109,15 @@ namespace GymApp.ViewModels
                 shoulderpress.RepRange = "8-12";
                 shoulderpress.TemplateID = pushtemplate;
                 await App.ExcersizeDatabase.SaveItemAsync(shoulderpress);
+
+                Excersize tcpushbehind = new Excersize();
+                tcpushbehind.ID = Guid.NewGuid().ToString();
+                tcpushbehind.Name = "Tricep Push Behind";
+                tcpushbehind.Machine = "Cable Machine/Rope";
+                tcpushbehind.Sets = "3";
+                tcpushbehind.RepRange = "8-12";
+                tcpushbehind.TemplateID = pushtemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(tcpushbehind);
 
                 Excersize squat = new Excersize();
                 squat.ID = Guid.NewGuid().ToString();
@@ -86,6 +140,51 @@ namespace GymApp.ViewModels
                 pulltemplate.Add(pullTemplate.ID);
                 deadLift.TemplateID = pulltemplate;
                 await App.ExcersizeDatabase.SaveItemAsync(deadLift);
+
+                Excersize latpulldown = new Excersize();
+                latpulldown.ID = Guid.NewGuid().ToString();
+                latpulldown.Name = "Lat Pulldown";
+                latpulldown.Machine = "Pulldown Cable Machine";
+                latpulldown.Sets = "3";
+                latpulldown.RepRange = "8-12";
+                latpulldown.TemplateID = pulltemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(latpulldown);
+
+                Excersize seatedrow = new Excersize();
+                seatedrow.ID = Guid.NewGuid().ToString();
+                seatedrow.Name = "Seated Row";
+                seatedrow.Machine = "Seated Row Cable";
+                seatedrow.Sets = "3";
+                seatedrow.RepRange = "8-12";
+                seatedrow.TemplateID = pulltemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(seatedrow);
+
+                Excersize HammerCurl = new Excersize();
+                HammerCurl.ID = Guid.NewGuid().ToString();
+                HammerCurl.Name = "Rope Hammer Curl";
+                HammerCurl.Machine = "Cable Machine/Rope";
+                HammerCurl.Sets = "3";
+                HammerCurl.RepRange = "8-12";
+                HammerCurl.TemplateID = pulltemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(HammerCurl);
+
+                Excersize FacePull = new Excersize();
+                FacePull.ID = Guid.NewGuid().ToString();
+                FacePull.Name = "Face Pull";
+                FacePull.Machine = "Cable Machine/Straight Bar";
+                FacePull.Sets = "3";
+                FacePull.RepRange = "8-12";
+                FacePull.TemplateID = pulltemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(FacePull);
+
+                Excersize BicepCurl = new Excersize();
+                BicepCurl.ID = Guid.NewGuid().ToString();
+                BicepCurl.Name = "Rope Bicep Curl";
+                BicepCurl.Machine = "Cable Machine/Straight Bar";
+                BicepCurl.Sets = "3";
+                BicepCurl.RepRange = "8-12";
+                BicepCurl.TemplateID = pulltemplate;
+                await App.ExcersizeDatabase.SaveItemAsync(BicepCurl);
 
             }
 

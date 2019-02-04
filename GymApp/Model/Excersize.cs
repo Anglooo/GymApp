@@ -13,6 +13,7 @@ namespace GymApp.Model
         public string Description { get; set; }
         public string RepRange { get; set;}
         public string Sets { get; set; }
+        public string LastWorkoutOverview { get; set; }
         public string TemplateIDJson { get; set; }
 
         [Ignore]

@@ -16,7 +16,6 @@ namespace GymApp
 
         public LinkExcersizeViewModel(IMvxNavigationService navigationService)
         {
-            //TODO: Write View
             _navigationService = navigationService;
             SaveCommand = new MvxCommand(async () => 
             {

@@ -17,7 +17,7 @@ namespace GymApp.Model
                 {
                     foreach (var item in Sets)
                     {
-                        output = output + item.Reps + "x" + item.Weight;
+                        output = output + item.Reps + "x" + item.Weight + " " + item.Denom;
                         if(Sets[Sets.Count-1] != item)
                         {
                             output = output + ",";
