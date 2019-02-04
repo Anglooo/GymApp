@@ -213,7 +213,6 @@ namespace GymApp.ViewModels
                 templateID = parameter;
                 PassedTemplate = await App.WorkoutTemplateDatabase.GetItemAsync(templateID);
             }
-            
         }
     }
 }
