@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GymApp.Model;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -7,12 +8,12 @@ using Xamarin.Forms;
 
 namespace GymApp.ViewModels
 {
-    public class NewExcersizeViewModel : MvxViewModel<bool,Excersize>
+    public class NewExcersizeViewModel : MvxViewModel<string, Excersize>
     {
         private readonly IMvxNavigationService _navigationService;
         public MvxCommand SaveExcersizeCommand { get; private set; }
 
-        private bool ReturnData { get; set; }
+        private string templateID { get; set; }
 
         public NewExcersizeViewModel(IMvxNavigationService navigationService)
         {
@@ -23,9 +24,9 @@ namespace GymApp.ViewModels
                 RepNumbers.Add(i.ToString());
             }
 
-            SaveExcersizeCommand = new MvxCommand(async () => 
+            SaveExcersizeCommand = new MvxCommand(async () =>
             {
-                if(string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Machine) && string.IsNullOrWhiteSpace(RepRangeLow) && string.IsNullOrWhiteSpace(RepRangeHigh) && string.IsNullOrWhiteSpace(Sets))
+                if (string.IsNullOrWhiteSpace(Name) && string.IsNullOrWhiteSpace(Machine) && string.IsNullOrWhiteSpace(RepRangeLow) && string.IsNullOrWhiteSpace(RepRangeHigh) && string.IsNullOrWhiteSpace(Sets))
                 {
                     await Application.Current.MainPage.DisplayAlert("Insufficient Data", "Insufficient Data", "OK");
                     return;
@@ -37,9 +38,9 @@ namespace GymApp.ViewModels
                 int repHighInt;
                 bool parsedHigh = int.TryParse(RepRangeHigh, out repHighInt);
 
-                if(parsedHigh && parsedLow)
+                if (parsedHigh && parsedLow)
                 {
-                    if(repLowInt > repHighInt)
+                    if (repLowInt > repHighInt)
                     {
                         await Application.Current.MainPage.DisplayAlert("Rep Range Problem", "Low rep range is higher than high rep range.", "OK");
                         return;
@@ -56,8 +57,16 @@ namespace GymApp.ViewModels
 
                 await App.ExcersizeDatabase.SaveItemAsync(excersize);
 
-                if(ReturnData)
+                if (ReturnData)
                 {
+                    if (AddToTemplate)
+                    {
+                        var templateIDs = new List<string>();
+                        templateIDs.Add(PassedTemplate.ID);
+                        excersize.TemplateID = templateIDs;
+                        await App.ExcersizeDatabase.SaveItemAsync(excersize);
+                    }
+                    
                     await _navigationService.Close(this, excersize);
                 }
                 else
@@ -152,11 +161,59 @@ namespace GymApp.ViewModels
             }
         }
 
+        private bool _addToTemplate { get; set; }
+        public bool AddToTemplate
+        {
+            get
+            {
+                return _addToTemplate;
+            }
+            set
+            {
+                _addToTemplate = value;
+                RaisePropertyChanged("AddToTemplate");
+            }
+        }
+
+        private bool _returnData { get; set; }
+        public bool ReturnData
+        {
+            get
+            {
+                return _returnData;
+            }
+            set
+            {
+                _returnData = value;
+                RaisePropertyChanged("ReturnData");
+            }
+        }
+
+        private WorkoutTemplate _passedTemplate;
+        public WorkoutTemplate PassedTemplate
+        {
+            get
+            {
+                return _passedTemplate;
+            }
+            set
+            {
+                _passedTemplate = value;
+                RaisePropertyChanged("PassedTemplate");
+            }
+        }
+
         public MvxObservableCollection<string> RepNumbers { get; private set; }
 
-        public override void Prepare(bool parameter)
+        public async override void Prepare(string parameter)
         {
-            ReturnData = parameter;
+            if(!string.IsNullOrEmpty(parameter))
+            {
+                ReturnData = true;
+                templateID = parameter;
+                PassedTemplate = await App.WorkoutTemplateDatabase.GetItemAsync(templateID);
+            }
+            
         }
     }
 }

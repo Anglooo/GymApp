@@ -15,6 +15,11 @@
                 <Picker Title="Low" SelectedItem="{Binding RepRangeLow}" ItemsSource="{Binding RepNumbers}"/>
                 <Picker Title="High" SelectedItem="{Binding RepRangeHigh}" ItemsSource="{Binding RepNumbers}"/>
             </StackLayout>
+            <StackLayout Orientation="Horizontal" IsVisible="{Binding ReturnData}">
+                <Label Text="Save to template: "/>
+                <Label Text="{Binding PassedTemplate.Name}"/>
+                <Switch IsToggled="{Binding AddToTemplate}"/>
+            </StackLayout>
             <Button Text="Save" Command="{Binding SaveExcersizeCommand}"/>
         </StackLayout>         
     </ContentPage.Content>

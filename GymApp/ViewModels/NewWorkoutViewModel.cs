@@ -185,7 +185,8 @@ namespace GymApp.ViewModels
 
             if (x == newExcersize)
             {
-                Excersize excersize = await _navigationService.Navigate<NewExcersizeViewModel, bool, Excersize>(true);
+                Excersize excersize = await _navigationService.Navigate<NewExcersizeViewModel, string, Excersize>(SelectedTemplate?.ID);
+                await App.ExcersizeDatabase.SaveItemAsync(excersize);
                 if (Excersizes == null)
                 {
                     Excersizes = new MvxObservableCollection<ExcersizeLogWrapper>();
@@ -221,12 +222,21 @@ namespace GymApp.ViewModels
 
         public async Task SaveWorkout(bool quietSave = false)
         {
-            CurrentWorkout.LoggedExcersizes = Excersizes.ToList();
+            CurrentWorkout.LoggedExcersizes = Excersizes.ToList().Where(x => x.LogComplete == true).ToList();
 
             if (!CurrentWorkout.Completed && !quietSave)
             {
-                bool decision = await Application.Current.MainPage.DisplayAlert("Is this workout Complete?", "", "Yes","No");
-                if (decision)
+                if (CurrentWorkout.LoggedExcersizes.Count == 0)
+                {
+                    bool decision = await Application.Current.MainPage.DisplayAlert("No Excersizes completed. Continue?", "", "Yes", "No");
+                    if (!decision)
+                    {
+                        return;
+                    }
+                }
+
+                bool decision2 = await Application.Current.MainPage.DisplayAlert("Is this workout Complete?", "", "Yes","No");
+                if (decision2)
                 {
                     CurrentWorkout.Completed = true;
                     CurrentWorkout.CompletedTime = DateTime.Now;

@@ -51,8 +51,9 @@ namespace GymApp.ViewModels
                 bpress.Machine = "Bench";
                 bpress.Sets = "3";
                 bpress.RepRange = "8-12";
-                bpress.TemplateID = new List<string>();
-                bpress.TemplateID.Add(pushTemplate.ID);
+                var pushtemplate = new List<string>();
+                pushtemplate.Add(pushTemplate.ID);
+                bpress.TemplateID = pushtemplate;
                 await App.ExcersizeDatabase.SaveItemAsync(bpress);
 
                 Excersize shoulderpress = new Excersize();
@@ -61,8 +62,7 @@ namespace GymApp.ViewModels
                 shoulderpress.Machine = "Squat Rack";
                 shoulderpress.Sets = "3";
                 shoulderpress.RepRange = "8-12";
-                shoulderpress.TemplateID = new List<string>();
-                shoulderpress.TemplateID.Add(pushTemplate.ID);
+                shoulderpress.TemplateID = pushtemplate;
                 await App.ExcersizeDatabase.SaveItemAsync(shoulderpress);
 
                 Excersize squat = new Excersize();
@@ -71,8 +71,9 @@ namespace GymApp.ViewModels
                 squat.Machine = "Squat Rack";
                 squat.Sets = "3";
                 squat.RepRange = "8-12";
-                squat.TemplateID = new List<string>();
-                squat.TemplateID.Add(legsTemplate.ID);
+                var legstemplate = new List<string>();
+                legstemplate.Add(legsTemplate.ID);
+                squat.TemplateID = legstemplate;
                 await App.ExcersizeDatabase.SaveItemAsync(squat);
 
                 Excersize deadLift = new Excersize();
@@ -81,8 +82,9 @@ namespace GymApp.ViewModels
                 deadLift.Machine = "Straight Bar";
                 deadLift.Sets = "5";
                 deadLift.RepRange = "3-5";
-                deadLift.TemplateID = new List<string>();
-                deadLift.TemplateID.Add(pullTemplate.ID);
+                var pulltemplate = new List<string>();
+                pulltemplate.Add(pullTemplate.ID);
+                deadLift.TemplateID = pulltemplate;
                 await App.ExcersizeDatabase.SaveItemAsync(deadLift);
 
             }
